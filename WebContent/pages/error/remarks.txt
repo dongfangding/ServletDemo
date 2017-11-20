@@ -1,0 +1,9 @@
+1. 404.jsp
+	 该界面是通过在web.xml中配置的error-code来处理显示对应错误码的界面，给用户一个友好体验。
+	 
+2. nullPoint.jsp
+        该界面直接访问，在界面中写了会报空指针的代码，通过在web.xml中配置<exception-type>来处理对应的异常次错误应该显示的界面，
+        在本例中，显示错误的界面为nullPointException.jsp界面
+ 
+	 
+	 

@@ -1,0 +1,5 @@
+1. jspForward.jsp
+	直接访问，用来验证使用jsp:forward来实现界面的跳转功能
+
+2. jspForwardServlet.jsp
+	直接访问，使用jsp:forward配置使用jsp:param组合使用，来实现跳转serlvet（当然也可以跳转界面）并携带参数

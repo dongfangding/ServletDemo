@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>ServletDemo</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+  
+  <error-page>
+    <exception-type>java.lang.NullPointerException</exception-type>
+    <location>/pages/error/nullPointException.jsp</location>
+  </error-page>
+  
+  <error-page>
+    <error-code>404</error-code>
+    <location>/pages/error/404.jsp</location>
+  </error-page>
+  
+  <context-param>
+    <description>使用context-param为整个web应用配置初始化参数</description>
+    <param-name>projectName</param-name>
+    <param-value>ServletDemo</param-value>
+  </context-param>
+  
+  <servlet>
+    <description>配置一个最基本的serlvet</description>
+    <servlet-name>xmlFirstServlet</servlet-name>
+    <servlet-class>training.servlet.summary.XmlFirstServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>xmlFirstServlet</servlet-name>
+    <url-pattern>/xmlFirstServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description>配置一个使用了init-param和load-on-startup配置项的serlvet</description>
+    <servlet-name>loadOnStartupServlet</servlet-name>
+    <servlet-class>training.servlet.summary.LoadOnStartupServlet</servlet-class>
+    <init-param>
+      <param-name>author</param-name>
+      <param-value>ddf</param-value>
+    </init-param>
+    <init-param>
+      <param-name>email</param-name>
+      <param-value>1041765757@qq.com</param-value>
+    </init-param>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>loadOnStartupServlet</servlet-name>
+    <url-pattern>/loadOnStartupServlet</url-pattern>
+  </servlet-mapping>
+  
+  <filter>
+  	<description>配置一个最基本的Filter，介绍使用方法</description>
+  	<filter-name>firstFilter</filter-name>
+  	<filter-class>training.filter.FirstFilter</filter-class>
+  	<init-param>
+  		<param-name>firstFilter</param-name>
+  		<param-value>firstFilterValue1</param-value>
+  	</init-param>
+  	
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>firstFilter</filter-name>
+  	<url-pattern>/pages/filter/firstFilter.jsp</url-pattern>
+  	<dispatcher>REQUEST</dispatcher>
+  	<dispatcher>FORWARD</dispatcher>
+  </filter-mapping>
+  
+  
+  <filter>
+  	<filter-name>encordingFilter</filter-name>
+  	<filter-class>training.filter.UrlEncordingFilter</filter-class>
+  	<init-param>
+  		<param-name>encording</param-name>
+  		<param-value>UTF-8</param-value>
+  	</init-param>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>encordingFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  	<dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
+  
+</web-app>

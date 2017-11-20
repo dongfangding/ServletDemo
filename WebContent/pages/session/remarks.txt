@@ -1,0 +1,4 @@
+1. 验证session的生命周期
+	a. 访问buy.jsp，点击购买，在session中保存用户购买的数据，然后返回页面，点击结账，显示用户购买的商品，默认为一个浏览器进程的cookie.
+	b. 通过cookie的方式回写sessionId，并且设置过期时间，这样当浏览器关闭后，sessionId如果未过期，则可以携带sessionId访问服务器
+	c. 如果客户禁用了cookie,那么通过cookie的方式则不能再去获得sessionId,只能通过URL重写，使每次对服务器的操作都能够携带一个sessionId

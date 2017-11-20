@@ -1,0 +1,34 @@
+jsp知识店概括
+
+1. JSP的三大指令
+	page指令，用来解释界面的行为<%@ page language="java" pageEncoding="UTF-8" contentType="text/html;charset=UTF-8" import="" %>
+	include指令 <%@ include file=""> 用来在本页中包含另外一个界面
+	taglib指令 用来引入自定义标签库，例如jstl <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+2. jsp操作bean的标签
+   <jsp:useBean id="指定javabean对象的引用名称"  class="javabean的完整含包类名" scope="指定取数据的作用域"/>
+   注意如果写法为
+   <jsp:useBean id="指定javabean对象的引用名称"  class="javabean的完整含包类名" scope="指定取数据的作用域">
+   		这里的内容只会在bean被实例化的时候才会被执行，也就是第二次访问的话，并不会执行
+   <jsp:useBean>
+   <jsp:setProperty property="属性名" name="bean对象的引用名称" value="参数的值"/>
+   <jsp:getProperty property="属性" name="bean对象的引用名称" />
+	
+3.Jsp运行原理
+	每个JSP界面在第一次被访问时，WEB容器都会把请求交给JSP引擎去处理，JSP引擎会把JSP翻译成一个_jspServlet,实际上就是一个Servlet,
+	然后按照servlet的调用方式进行调用。jsp翻译的servelt可以在${CATALINA_HOME}/work/catalina/web项目中查看。
+	JSP引擎在调用JSP对应的_jspServlet时，会传递或创建9个与web开发相关的对象供_jspServlet使用，所以开发人员可以在jsp界面中通过变量
+	直接使用这9个对象，这9个对象在源码中可以清晰的看到，分别为request, response, session, application(ServletContext),
+	config(ServletContextConfig), page, exception, out, pageContext
+
+4. PageContext对象, 在整个Jsp界面存在一个PageConetxt对象，该对象封装了对Jsp其它八大隐式对象的引用，同时也提供了转发和包含的方法。
+	常用的地方有，通过el表达式获取上下文${pageContext.request.contextPath},
+	pageContext.forward() pageContext.include
+
+	
+5. JSP文件应该被保护起来，所以在实际的开发中，通常需要把jsp界面创建到/WEB-INF目录下，这样客户端不能直接去访问jsp。同时需要把界面展示给用户
+        看到，就需要写servlet来转发到对应的jsp界面。  
+        
+6. 关于界面中引用自定义标签时使用<%@ taglib>指定引入标签时的uri如何填写，在Project Explorer视图找到Referenced Libraries
+         在其中找到标签库的jar包,在META-INF中找到标签库前缀的.tld文件，打开后看到<uri></url>
+   
