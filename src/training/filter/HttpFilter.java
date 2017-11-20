@@ -27,7 +27,7 @@ public abstract class HttpFilter implements Filter {
 	
 	@Override
 	public void destroy() {
-		
+		System.out.println("HttpFilter destroy.......");
 	}
 
 	/**
@@ -68,6 +68,7 @@ public abstract class HttpFilter implements Filter {
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		this.filterConfig = filterConfig;
+		System.out.println("HttpFilter init.......");
 	}
 
 }
