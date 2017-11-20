@@ -10,7 +10,7 @@ import module.user.service.UserService;
 
 public class UserTest {
 	private UserService userService = new UserService();
-	private UserDao userDao = new UserDao();
+	private UserDao userDao = UserDao.getInstance();
 	@Test
 	public void testAddUser() {
 		User user = new User("2", "yichen", "123456", "逸尘");
@@ -20,6 +20,9 @@ public class UserTest {
 				System.out.println(us.getUsername());
 			}
 		} catch (UserExistException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
