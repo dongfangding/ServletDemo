@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -20,9 +21,14 @@ import javax.servlet.http.HttpServletResponse;
 public abstract class HttpFilter implements Filter {
 	// 定义FilterConfig对象，把Filter出初始化时的FilterConfig引用过来以供子类使用
 	private FilterConfig filterConfig;
+	private ServletContext servletContext;
 	
 	protected FilterConfig getFilterConfig() {
 		return filterConfig; 
+	}
+
+	protected ServletContext getServletContext() {
+		return this.servletContext;
 	}
 	
 	@Override
@@ -51,23 +57,23 @@ public abstract class HttpFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		doFilter(httpRequest, httpResponse, filterChain);
-		filterChain.doFilter(request, response);
 		System.out.println("HttpFilter over...........");
 	}
 	
 	/**
-	 * 如果需要使用Filter，请重写此方法
+	 * 如果需要使用Filter，必须要实现的方法
 	 * @param request
 	 * @param response
 	 * @param filterChain
 	 */
-	protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) {
-		System.out.println("HttpFilter doFilter..........");
-	}
-
+	public abstract void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+			throws IOException, ServletException;
+	
+	
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		this.filterConfig = filterConfig;
+		this.servletContext = filterConfig.getServletContext();
 		System.out.println("HttpFilter init.......");
 	}
 

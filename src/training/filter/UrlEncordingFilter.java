@@ -1,9 +1,11 @@
 package training.filter;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -28,9 +30,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class UrlEncordingFilter extends HttpFilter{
 	@Override
-	protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) {
-		FilterConfig filterConfig = super.getFilterConfig();
-		String encoring = filterConfig.getInitParameter("encording");
+	public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) 
+			throws IOException, ServletException {
+		String encoring = super.getServletContext().getInitParameter("ENCORDING");
 		System.out.println("UrlEncordingFilter working..............设置当前编码为：" + encoring);
 		try {
 			request.setCharacterEncoding(encoring);
@@ -44,7 +46,6 @@ public class UrlEncordingFilter extends HttpFilter{
 			e.printStackTrace();
 		}
 		System.out.println("UrlEncordingFilter over..........");
-		// 父类的这个方法本来就是让子类复写的，所以这里没必要调用父类的这个方法
-		// super.doFilter(request, response, filterChain);
+		filterChain.doFilter(request, response);
 	}
 }

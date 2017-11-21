@@ -12,6 +12,12 @@
   <session-config>
     <session-timeout>30</session-timeout>
   </session-config>
+
+  <context-param>
+  	<description>设置当前 应用的编码</description>
+  	<param-name>ENCORDING</param-name>
+  	<param-value>UTF-8</param-value>
+  </context-param>
   
   <error-page>
     <exception-type>java.lang.NullPointerException</exception-type>
@@ -80,12 +86,9 @@
   
   
   <filter>
+  	<description>设置当前应用程序的编码</description>
   	<filter-name>encordingFilter</filter-name>
   	<filter-class>training.filter.UrlEncordingFilter</filter-class>
-  	<init-param>
-  		<param-name>encording</param-name>
-  		<param-value>UTF-8</param-value>
-  	</init-param>
   </filter>
   
   <filter-mapping>
@@ -93,5 +96,18 @@
   	<url-pattern>/*</url-pattern>
   	<dispatcher>REQUEST</dispatcher>
   </filter-mapping>
+  
+  <!-- <filter>
+ 	<description>登陆的Filter</description>
+  	<filter-name>LoginFilter</filter-name>
+  	<filter-class>training.filter.LoginFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>LoginFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  	<dispatcher>REQUEST</dispatcher>
+  	<dispatcher>FORWARD</dispatcher>
+  </filter-mapping> -->
   
 </web-app>
