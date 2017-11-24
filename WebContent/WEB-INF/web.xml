@@ -9,6 +9,12 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <listener>
+  	<description>注册ServletContextListener，用来监听ServletContext的创建和销毁</description>
+  	<listener-class>training.listener.FirstServletContextListener</listener-class>
+  </listener>
+  
   <session-config>
     <session-timeout>30</session-timeout>
   </session-config>
