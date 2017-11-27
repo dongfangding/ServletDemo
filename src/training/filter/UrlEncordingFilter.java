@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import javax.servlet.FilterChain;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,7 +33,7 @@ public class UrlEncordingFilter extends HttpFilter{
 			throws IOException, ServletException {
 		String encoring = super.getServletContext().getInitParameter("ENCORDING");
 		System.out.println("UrlEncordingFilter working..............设置当前编码为：" + encoring);
-		try {
+		try {  
 			request.setCharacterEncoding(encoring);
 			response.setCharacterEncoding(encoring);
 			

@@ -22,6 +22,7 @@
 		if (dateStr == null) {
 			dateStr = "";
 		}
+		System.out.println(request.getServletContext().getAttribute("LAST_PATH"));
 	%>
 	欢迎回来！${user.username }
 	<%=dateStr%>
@@ -29,6 +30,11 @@
 	<%-- <c:if test="${adminLastLoginDate != null }">
 		您上次登录的时间是${adminLastLoginDate } 
 	</c:if> --%>
+	
+	
+	<c:if test="${LAST_PATH != null }">
+		<a href = "${pageContext.request.contextPath }/${LAST_PATH}" > 返回登陸前界面</a>
+	</c:if>
 </c:if>
 </div>
 

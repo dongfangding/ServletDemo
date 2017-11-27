@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import module.user.entity.User;
-
 
 /**
  * 对每个请求进行登陆拦截验证
@@ -26,7 +24,6 @@ public class LoginFilter extends HttpFilter {
 		System.out.println("LoginFilter working...........");
 		HttpSession session = request.getSession();
 		String servletPath = request.getServletPath();
-		System.out.println(servletPath);
 		// 忽略的url验证列表
 		String exIncludeUrl = super.getFilterConfig().getInitParameter("excludeUrls");
 		if (exIncludeUrl != null && !"".equals(exIncludeUrl)) {
@@ -51,7 +48,8 @@ public class LoginFilter extends HttpFilter {
 		}
 		if (session.getAttribute("user") == null) {
 			try {
-				request.getRequestDispatcher("/moduleUserLoginJspServlet.do").forward(request, response);
+				super.getServletContext().setAttribute("LAST_PATH", servletPath);
+				request.getRequestDispatcher("/userLoginJspServlet.do").forward(request, response);
 			} catch (ServletException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
