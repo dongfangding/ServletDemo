@@ -8,8 +8,8 @@
 </head>
 <body>
 <center>
-	<form action="${pageContext.request.contextPath }/firstUploadServlet.do" method = "post" enctype="multipart/form-data">
-		<input type = "file" name = "file" /> <br />
+	<form action="${pageContext.request.contextPath }/userIconUploadServlet.do" method = "post" enctype="multipart/form-data">
+		选择头像: <input type = "file" name = "file" /> <br />
 		<input type = "submit" value = "upload">
 	</form>
 </center>

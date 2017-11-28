@@ -9,6 +9,7 @@
 	<c:if test="${user == null }">
 		<a href="${pageContext.request.contextPath }/userLoginJspServlet.do" >登录</a> &nbsp;&nbsp;
 	</c:if>
+	<a href = "${pageContext.request.contextPath }/pages/module/userIcon.jsp"><img alt="${user.username }" src="${pageContext.request.contextPath }/pic/userIcon.png" width="40" height="40"></a>
 	<c:if test="${user != null }">
 		<b>${user.username }</b>&nbsp;&nbsp;<a href="${pageContext.request.contextPath }/userLoginJspServlet.do" >切换帐号</a> &nbsp;&nbsp;
 		<a href="${pageContext.request.contextPath }/userLoginOutServlet.do" >注销</a> &nbsp;&nbsp;
