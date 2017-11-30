@@ -30,16 +30,13 @@ public class ResponseImageServlet extends HttpServlet {
 		OutputStream out = response.getOutputStream();
 		File file = new File(path);
 		FileInputStream filein = new FileInputStream(file);
-		String fileName = URLEncoder.encode(file.getName(), "UTF-8");
+		response.setContentType("application/x-msdownload");
+		response.setHeader("Content-Disposition", "attachment;filename="+URLEncoder.encode(file.getName(), "UTF-8"));
 		byte []buf = new byte[1024];
 		int len = 0;
 		while((len = filein.read(buf)) != -1) {
 			out.write(buf, 0, len);
 		}
-		System.out.println(fileName);
-		response.setContentType("image/png;charset=UTF-8");
-		// 没有弹框下载，找不到原因
-		response.setHeader("Content-Disposition", "attachment;filename="+fileName);
 		filein.close();
 	}
 

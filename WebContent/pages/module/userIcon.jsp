@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+	<%@include file="/WEB-INF/module/user/public/header.jsp" %>
 	<br /><br /><br />
 	
 	<a href = "${pageContext.request.contextPath }/pages/module/userIconUpload.jsp">upload your icon</a>
-	<a href = "">download your icon</a>
+	<a href = "${pageContext.request.contextPath }/userIconDownloadServlet.do">download your icon</a>
 </body>
 </html>
